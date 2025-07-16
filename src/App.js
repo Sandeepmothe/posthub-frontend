@@ -11,6 +11,7 @@ import { AuthContext } from './helpers/AuthContext';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ChangePassword from './pages/ChangePassword';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -45,6 +46,8 @@ function App() {
 
   }, [API_URL]);
 
+  let navigate = useNavigate()
+
   const logout = () => {
     localStorage.removeItem("accessToken");
     setAuthState({
@@ -52,6 +55,7 @@ function App() {
       id: 0,
       status: false,
     });
+    navigate("/login")
   }
 
   return (
