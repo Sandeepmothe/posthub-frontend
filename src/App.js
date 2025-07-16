@@ -43,7 +43,7 @@ function App() {
 
     })
 
-  }, [API_URL]);
+  }, []);
 
   const logout = () => {
     localStorage.removeItem("accessToken");
