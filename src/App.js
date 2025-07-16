@@ -32,7 +32,7 @@ function App() {
     }).then((response) => {
       if (response.data.error) {
         setAuthState((prev) => ({ ...prev, status: false }));
-        console.log("API_URL:", import.meta.env.VITE_API_URL);
+        // console.log("API_URL:", import.meta.env.VITE_API_URL);
         // navigate("/login")
 
       } else {
