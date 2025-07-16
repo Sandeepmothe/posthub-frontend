@@ -30,7 +30,7 @@ function App() {
       },
     }).then((response) => {
       if (response.data.error) {
-        setAuthState({ ...authState, status: false });
+        setAuthState((prev) => ({ ...prev, status: false }));
         console.log("API_URL:", import.meta.env.VITE_API_URL);
 
       } else {
@@ -43,7 +43,7 @@ function App() {
 
     })
 
-  }, []);
+  }, [API_URL]);
 
   const logout = () => {
     localStorage.removeItem("accessToken");
