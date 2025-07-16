@@ -6,6 +6,7 @@ import { AuthContext } from '../helpers/AuthContext';
 
 
 function Login() {
+    const API_URL = process.env.REACT_APP_API_URL;
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const { setAuthState } =useContext(AuthContext);
@@ -14,7 +15,7 @@ function Login() {
 
     const login = ()=>{
         const data = { username: username, password: password };
-        axios.post('http://localhost:3001/auth/login', data).then((response)=>{
+        axios.post(`${API_URL}/auth/login`, data).then((response)=>{
             if (response.data.error) {
                 alert(response.data.error);
             }else{

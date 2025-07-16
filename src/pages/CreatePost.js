@@ -7,6 +7,7 @@ import { AuthContext } from '../helpers/AuthContext';
 
 
 function CreatePost() {
+    const API_URL = process.env.REACT_APP_API_URL;
 
     const initialValues = {
         title: "",
@@ -28,7 +29,7 @@ function CreatePost() {
     })
 
     const onSubmit = (data) => {
-        axios.post('http://localhost:3001/posts', data, {
+        axios.post(`${API_URL}/posts`, data, {
             headers: {
                 accessToken: localStorage.getItem("accessToken"),
             },

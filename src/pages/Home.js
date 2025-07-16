@@ -8,6 +8,7 @@ import { AuthContext } from '../helpers/AuthContext';
 
 
 function Home() {
+    const API_URL = process.env.REACT_APP_API_URL;
     const [listOfPosts, setListOfPosts] = useState([]);
     const [likedPosts, setLikedPosts] = useState([]);
     const { authState } = useContext(AuthContext);
@@ -18,7 +19,7 @@ function Home() {
         if (!localStorage.getItem('accessToken')) {
             navigate('/login');
         } else {
-            axios.get("http://localhost:3001/posts", {
+            axios.get(`${API_URL}/posts`, {
                 headers: {
                     accessToken: localStorage.getItem("accessToken"),
                 },
@@ -30,10 +31,10 @@ function Home() {
                 }));
             });
         }
-    }, []);
+    }, [API_URL]);
 
     const likeAPost = (postId) => {
-        axios.post("http://localhost:3001/likes", { PostId: postId }, {
+        axios.post(`${API_URL}/likes`, { PostId: postId }, {
             headers: {
                 accessToken: localStorage.getItem("accessToken")
             }

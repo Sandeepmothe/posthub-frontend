@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function Registration() {
+    const API_URL = process.env.REACT_APP_API_URL;
     const initialValues = {
         username: "",
         password: "",
@@ -17,8 +18,8 @@ function Registration() {
 
     let navigate = useNavigate()
 
-    const onSubmit = data => axios.post('http://localhost:3001/auth', data).then(()=>{
-        navigate('/auth')
+    const onSubmit = data => axios.post(`${API_URL}/auth`, data).then(()=>{
+        navigate('/login')
     });
 
 

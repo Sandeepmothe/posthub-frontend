@@ -2,11 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react'
 
 function ChangePassword() {
+    const API_URL = process.env.REACT_APP_API_URL;
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
 
     const changePassword = () => {
-        axios.put('http://localhost:3001/auth/changepassword',
+        axios.put(`${API_URL}/auth/changepassword`,
             {
                 oldPassword: oldPassword,
                 newPassword: newPassword,

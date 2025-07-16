@@ -4,6 +4,7 @@ import axios from 'axios';
 import { AuthContext } from '../helpers/AuthContext';
 
 function Post() {
+    const API_URL = process.env.REACT_APP_API_URL;
     let { ID } = useParams();
     let navigate = useNavigate();
 
@@ -13,20 +14,20 @@ function Post() {
     const { authState } = useContext(AuthContext);
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/posts/byId/${ID}`).then((response) => {
+        axios.get(`${API_URL}/posts/byId/${ID}`).then((response) => {
             // console.log(response.data);
             setPostObject(response.data);
         });
 
-        axios.get(`http://localhost:3001/comments/${ID}`).then((response) => {
+        axios.get(`${API_URL}/comments/${ID}`).then((response) => {
             // console.log(response.data);
             setComments(response.data);
         });
 
-    }, [ID]);
+    }, [API_URL,ID]);
 
     const addComment = () => {
-        axios.post("http://localhost:3001/comments", {
+        axios.post(`${API_URL}/comments`, {
             commentBody: newComment,
             PostId: ID,
         },
@@ -49,7 +50,7 @@ function Post() {
     };
 
     const deleteComment = (id) => {
-        axios.delete(`http://localhost:3001/comments/${id}`, {
+        axios.delete(`${API_URL}/comments/${id}`, {
             headers: { accessToken: localStorage.getItem("accessToken") },
 
         }).then(() => {
@@ -62,7 +63,7 @@ function Post() {
     }
 
     const deletePost = (id) => {
-        axios.delete(`http://localhost:3001/posts/${id}`, {
+        axios.delete(`${API_URL}/posts/${id}`, {
             headers: { accessToken: localStorage.getItem("accessToken") },
 
         }).then(() => {
@@ -74,7 +75,7 @@ function Post() {
     const editPost = (option) => {
         if(option === 'title' ){
             let newTitle = prompt("Enter New Title:");
-            axios.put(`http://localhost:3001/posts/title`, {
+            axios.put(`${API_URL}/posts/title`, {
                 newTitle: newTitle, 
                 id: ID,
             },
@@ -84,7 +85,7 @@ function Post() {
             setPostObject({...postObject, title: newTitle})
         }else{
             let newText = prompt("Enter New postText:");
-            axios.put(`http://localhost:3001/posts/postText`, {
+            axios.put(`${API_URL}/posts/postText`, {
                 newText: newText, 
                 id: ID,
             },

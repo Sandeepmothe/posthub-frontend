@@ -14,7 +14,9 @@ import ChangePassword from './pages/ChangePassword';
 
 
 
+
 function App() {
+  const API_URL = process.env.REACT_APP_API_URL;
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
@@ -22,13 +24,15 @@ function App() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:3001/auth/auth', {
+    axios.get(`${API_URL}/auth/auth`, {
       headers: {
         accessToken: localStorage.getItem("accessToken"),
       },
     }).then((response) => {
       if (response.data.error) {
         setAuthState({ ...authState, status: false });
+        console.log("API_URL:", import.meta.env.VITE_API_URL);
+
       } else {
         setAuthState({
           username: response.data.username,
@@ -39,7 +43,7 @@ function App() {
 
     })
 
-  }, []);
+  }, [API_URL]);
 
   const logout = () => {
     localStorage.removeItem("accessToken");

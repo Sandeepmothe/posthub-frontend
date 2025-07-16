@@ -6,6 +6,7 @@ import { AuthContext } from '../helpers/AuthContext';
 
 
 function Profile() {
+    const API_URL = process.env.REACT_APP_API_URL;
     const { id } = useParams();
     const [username, setUsername] = useState('');
     const [listOfPosts, setListOfPosts] = useState([]);
@@ -14,15 +15,15 @@ function Profile() {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/auth/basicinfo/${id}`).then((response) => {
+        axios.get(`${API_URL}/auth/basicinfo/${id}`).then((response) => {
             setUsername(response.data.username);
         });
 
-        axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((response) => {
+        axios.get(`${API_URL}/posts/byuserId/${id}`).then((response) => {
             setListOfPosts(response.data);
 
         });
-    }, [])
+    }, [API_URL,id])
     return (
         <div className='profilePageContainer'>
             <div className='basicInfo'>
@@ -35,7 +36,7 @@ function Profile() {
                     return (
                         <div className='post' key={key} >
                             <div className='title'>{value.title}</div>
-                            <div className='body' onClick={() => navigate(`./post/${value.id}`)}>{value.postText}</div>
+                            <div className='body' onClick={() => navigate(`/post/${value.id}`)}>{value.postText}</div>
                             <div className='footer'>
                                 <div className='username'>{value.username}</div>
                                 <div className='buttons'>
