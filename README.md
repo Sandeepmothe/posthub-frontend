@@ -4,6 +4,28 @@ PostHub is a full-stack social media-style web application built using the **MER
 
 ## 🌐 Live Demo
 
+⚠️ Backend currently inactive
+
+The backend for this project was previously hosted on Railway with a free MySQL database. However, the free trial has expired, and the service is no longer accessible.
+
+You can still:
+
+View the frontend here: Live Demo Link
+
+Explore the code:
+
+Frontend Repo
+
+Backend Repo
+
+If you'd like to run the project locally:
+
+Clone both repos
+
+Set up your own MySQL database
+
+Add a .env file with the required variables listed below 
+
 👉 [Visit PostHub](https://posthub-app.netlify.app/)
 
 👉 [Backend Code](https://github.com/Sandeepmothe/posthub-backend)
